@@ -14,6 +14,7 @@ for i in auth:
     Tag_ID.append(i)
 
 
+
 #Include the buzzer pin
 buzzer = 19
 

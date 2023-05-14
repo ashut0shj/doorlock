@@ -4,14 +4,21 @@ import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 from time import sleep
 
+
+import json
+with open("auth.json") as file: 
+    auth = {}
+    auth = json.load(file)
+Tag_ID=[]
+for i in auth:
+    Tag_ID.append(i)
+
+
 #Include the buzzer pin
 buzzer = 19
 
 #Include the relay pin
 relay = 26
-
-#Enter your tag ID
-Tag_ID = "1044051400610"
 
 door = True
 
@@ -40,7 +47,7 @@ while True:
     
     id = str(id)
                
-    if id == Tag_ID:
+    if id in Tag_ID:
         lcd.lcd_clear()
         lcd.lcd_display_string("Successful",1,3)
         

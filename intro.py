@@ -1,5 +1,7 @@
 import rw
-
+import I2C_LCD_driver
+lcd = I2C_LCD_driver.lcd()
+lcd.lcd_display_string("Welcome to Braims",1,0)
 def mainscreen():
     a='''Welcome to BRAIMS' DNP project
 
@@ -9,7 +11,8 @@ def mainscreen():
     4>Write Data in RFID'''
     print(a)
 
-    c=int(input("enteer your choice : "))
+
+    c=int(input("enter your choice : "))
     if c==1:
         import Door_lock_system
     elif c==2:

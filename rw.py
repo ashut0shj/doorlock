@@ -12,7 +12,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(buzzer,GPIO.OUT)
 
-# Create a object for the LCD
+#Create a object for the LCD
 lcd = I2C_LCD_driver.lcd()
 
 def write():

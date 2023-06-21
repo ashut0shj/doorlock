@@ -51,27 +51,42 @@ while True:
     if id in Tag_ID:
         lcd.lcd_clear()
         lcd.lcd_display_string("Successful",1,3)
-        
-        if door == True:
-            lcd.lcd_display_string("Door is locked",2,1)
-            GPIO.output(relay,GPIO.HIGH)
+        import otp
+        otp_input = otp.otp()
+        if otp_input:
+            if door == True:
+                lcd.lcd_display_string("Door is locked",2,1)
+                GPIO.output(relay,GPIO.HIGH)
+                GPIO.output(buzzer,GPIO.HIGH)
+                sleep(0.5)
+                GPIO.output(buzzer,GPIO.LOW)
+                door = False
+                sleep(3)
+                
+                
+            elif door == False:
+                lcd.lcd_display_string("Door is open",2,2)
+                GPIO.output(relay,GPIO.LOW)
+                GPIO.output(buzzer,GPIO.HIGH)
+                sleep(0.5)
+                GPIO.output(buzzer,GPIO.LOW)
+                door = True
+                sleep(3)
+        else:
+            print("wrong OTP")                
+            lcd.lcd_clear()
+            lcd.lcd_display_string("Wrong OTP!",1,3)
             GPIO.output(buzzer,GPIO.HIGH)
-            sleep(0.5)
+            sleep(0.3)
             GPIO.output(buzzer,GPIO.LOW)
-            door = False
-            sleep(3)
-            
-            
-        elif door == False:
-            lcd.lcd_display_string("Door is open",2,2)
-            GPIO.output(relay,GPIO.LOW)
+            sleep(0.3)
             GPIO.output(buzzer,GPIO.HIGH)
-            sleep(0.5)
+            sleep(0.3)
             GPIO.output(buzzer,GPIO.LOW)
-            door = True
-            sleep(3)
-                        
-        
+            sleep(0.3)
+            GPIO.output(buzzer,GPIO.HIGH)
+            sleep(0.3)
+            GPIO.output(buzzer,GPIO.LOW) 
     else:
         lcd.lcd_clear()
         lcd.lcd_display_string("Wrong Tag!",1,3)

@@ -16,14 +16,14 @@ for i in auth:
 
 
 #Include the buzzer pin
-buzzer = 19
+buzzer = 40
 
 #Include the relay pin
 relay = 26
 
 door = True
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 GPIO.setup(buzzer,GPIO.OUT)
 GPIO.setup(relay,GPIO.OUT)
@@ -41,7 +41,7 @@ for a in range (0,15):
     sleep(0.1)
 
 
-def tag_scan():
+def tag_scan(door):
     lcd.lcd_clear()
     lcd.lcd_display_string("Place your Tag",1,1)
     id,Tag = read.read()
@@ -52,7 +52,7 @@ def tag_scan():
         lcd.lcd_display_string("Successful",1,3)
             
         if door == True:
-            lcd.lcd_display_string("Door is locked",2,1)
+            lcd.lcd_display_string("Door is unlocked",2,1)
             GPIO.output(relay,GPIO.HIGH)
             GPIO.output(buzzer,GPIO.HIGH)
             sleep(0.5)
@@ -87,10 +87,10 @@ def tag_scan():
 while True:
     lcd.lcd_clear()
     lcd.lcd_display_string("1 > Scan Tag",1,1)
-    lcd.lcd_display_string("1 > Enter OTP",2,1)
+    lcd.lcd_display_string("2 > Enter OTP",2,1)
     c=int(input("Enter your Choice : "))
     if c == 1 :
-        tag_scan()
+        tag_scan(door)
     elif c == 2 :
         lcd.lcd_display_string(" Enter OTP >",1,1)
         result = otp.otp()

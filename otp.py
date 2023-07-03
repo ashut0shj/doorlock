@@ -5,10 +5,10 @@ import time
 
 
 def otp():
-  account_sid = "ACed6b1e94e3ceebbeaddeda9fb0b98281"
-  auth_token = "9bf10b1804ae9b87aed1467668cea709"
-  verify_sid = "VAa0ccb5d858bee075ca760059ee641591"
-  verified_number = "+919434776497"
+  account_sid = "AC99a81d21e965ed6872119b5f622fa915"
+  auth_token = "f560c0603a3f921d3b3913e9460ab201"
+  verify_sid = "VA8f0c5484e146c568d18bbe64e8408976"
+  verified_number = "+919129093900"
 
   client = Client(account_sid, auth_token)
 
